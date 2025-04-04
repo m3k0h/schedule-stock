@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Schedule-Stock</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<header>
-    <h1 class="logo">📦</h1>
-    <h1>Deposito</h1>
-</header>
 <body>
+    <!-- Header -->
+    <header>
+        <h1 class="logo">📦</h1>
+        <h1>Depósito</h1>
+    </header>
+
+    <!-- Contenido principal -->
     <div class="container">
         <button class="btnAgregar" onclick="agregarDroga()">Agregar</button>
 
@@ -28,54 +31,59 @@
                     <td>${id}</td>
                     <td class="arrNombre">${nombre}</td>
                     <td>${stock}</td>
-                    <td><button class="optButton btnModificarStock" onclick="modificarStock(2,1)">✏️</button> <button class="optButton btnEliminar">✕</button></td>
+                    <td>
+                        <button class="optButton btnModificarStock" onclick="modificarStock(2,1)">✏️</button>
+                        <button class="optButton btnEliminar">✕</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <!-- Modal: Modificar Stock -->
+    <div id="modalStock" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="closeModal" class="close">&times;</span>
+                <h2>📋 | Modificar stock</h2>
+            </div>
+            <div class="modal-body">
+                <form id="formActualizarStock">
+                    <label for="modificarStock" id="labelModificarStock">Stock</label>
+                    <br>
+                    <input type="number" id="modificarStock" required>
+                    <br>
+                    <button type="submit">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Agregar Droga -->
+    <div id="modalAgregar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="closeAgregarDroga" class="close">&times;</span>
+                <h2>🌿 | Agregar nueva droga</h2>
+            </div>
+            <div class="modal-body">
+                <form id="formAgregarDroga">
+                    <label for="nombreDroga" id="labelNombreDroga">Nombre</label>
+                    <br>
+                    <input type="text" id="nombreDroga" required>
+                    <br>
+                    <label for="cantStock" id="labelCantStock">Stock</label>
+                    <br>
+                    <input type="number" id="cantStock" required>
+                    <br>
+                    <button type="submit">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="script.js"></script>
 </body>
-<footer>
-
-</footer>
-<div id="modalStock" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span id="closeModal" class="close">&times;</span>
-            <h2>📋 | Modificar stock</h2>
-        </div>
-        <div class="modal-body">
-            <form id="formActualizarStock">
-                <label for="modificarStock" id="labelModificarStock">Stock</label>
-                <br>
-                <input type="number" id="modificarStock" required>
-                <br>
-                <button type="submit">Actualizar</button>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div id="modalAgregar" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span id="closeAgregarDroga" class="close">&times;</span>
-            <h2>🌿 | Agregar nueva droga</h2>
-        </div>
-        <div class="modal-body">
-            <form id="formAgregarDroga">
-                <label for="nombreDroga" id="labelNombreDroga">Nombre</label>
-                <br>
-                <input type="text" id="nombreDroga" required>
-                <br>
-                <label for="cantStock" id="labelCantStock">Stock</label>
-                <br>
-                <input type="number" id="cantStock" required>
-                <br>
-                <button type="submit">Crear</button>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
-<script src="script.js"></script>
 </html>

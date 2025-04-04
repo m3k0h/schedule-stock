@@ -1,24 +1,57 @@
-*{
+/* RESET & TRANSICIONES GENERALES */
+* {
     transition: all 0.3s ease, transform 0.3s ease;
 }
 
-body{
+/* LAYOUT GENERAL */
+body {
     background-color: #1f2124;
     color: white;
     font-family: Arial, sans-serif;
 }
 
-header{
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    padding: 10px;
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+}
+
+.logo {
+    display: inline-block;
+    position: relative;
+    animation: girar 3.5s linear infinite;
+}
+
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* TABLA */
 table {
-    table-layout: auto;
     width: auto;
     min-width: 600px;
     max-width: 80%;
-    border-collapse: collapse;
     margin: auto;
+    table-layout: auto;
+    border-collapse: collapse;
     font-size: 18px;
     text-align: left;
     border-radius: 10px;
@@ -34,13 +67,12 @@ thead {
 }
 
 th, td {
-    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
-    padding: 8px 12px; /* Agrega espaciado */
+    white-space: nowrap;
     padding: 14px 18px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.colNombre, .arrNombre{
+.colNombre, .arrNombre {
     text-align: center;
     min-width: 200px;
 }
@@ -59,103 +91,24 @@ td:last-child {
     text-align: center;
 }
 
-.optButton{
-    font-size:21px;
+/* BOTONES DE TABLA */
+.optButton {
+    font-size: 21px;
     border-radius: 5px;
     border: 1px solid transparent;
     background-color: transparent;
 }
 
-.optButton:hover{
+.optButton:hover {
     transform: scale(1.2);
 }
 
-
-.btnEliminar{
+.btnEliminar {
     color: white;
     font-size: 26px;
 }
 
-.modal {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    top: 0; /* Asegura que está pegado arriba */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center; /* Centrado horizontalmente */
-    align-items: flex-start; /* Alineado al inicio (arriba) */
-    padding-top: 20vh; /* Lo empuja un poco hacia abajo */
-}
-
-.modal-content {
-    position: relative;
-    box-shadow: #2b2b2b71 00px 0px 50px;
-    background: rgb(12, 19, 31);
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    max-width: 400px;
-}
-
-
-/* Botón de cerrar */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: white;
-    position: absolute;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.close:hover {
-    transform: scale(1.2);
-}
-
-#modificarStock, #cantStock, #nombreDroga {
-    width: 100%;
-    padding: 8px;
-    border: none; /* Gris */
-    border-radius: 15px;
-    background: #334155; /* Azul oscuro */
-    color: white;
-    font-size: 16px;
-}
-
-/* Botón de actualizar */
-.modal-body button {
-    width: 100%;
-    background: #3b82f6; /* Azul */
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s;
-}
-
-.modal-body button:hover {
-    background: #2563eb; /* Azul más oscuro */
-}
-
-#labelModificarStock, #labelNombreDroga, #labelCantStock{
-    margin: 15px;
-    margin-top: 10px;
-    font-weight: 500;
-}
-
-.container{
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.btnAgregar{
+.btnAgregar {
     margin: 10px;
     padding: 5px;
     font-size: 16px;
@@ -166,37 +119,89 @@ td:last-child {
     border: none;
 }
 
-.btnAgregar:hover{
+.btnAgregar:hover {
     transform: scale(1.15);
     background-color: #2d6bf0;
 }
 
-header {
+/* MODALES */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
-    flex-direction: column; /* Pone los elementos en columna */
-    align-items: center; /* Centra horizontalmente */
-    gap: 5px; /* Espacio entre los elementos */
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20vh;
+}
+
+.modal-content {
+    position: relative;
+    box-shadow: #2b2b2b71 0px 0px 50px;
+    background: rgb(12, 19, 31);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 400px;
+}
+
+/* CIERRE MODAL */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+/* INPUTS */
+#modificarStock,
+#cantStock,
+#nombreDroga {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 15px;
+    background: #334155;
+    color: white;
+    font-size: 16px;
+}
+
+/* LABELS */
+#labelModificarStock,
+#labelNombreDroga,
+#labelCantStock {
+    margin: 15px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+#labelCantStock {
+    margin: 10px;
+}
+
+/* BOTÓN MODAL */
+.modal-body button {
+    width: 100%;
+    background: #3b82f6;
     color: white;
     padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
 }
 
-header h1{
-    padding: 0;
-    margin: 0;
-    font-size: 40px;
+.modal-body button:hover {
+    background: #2563eb;
 }
-
-.logo {
-    display: inline-block;
-    animation: girar 3.5s linear infinite;
-    position: relative;
-  }
-  
-  @keyframes girar {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-  
-  #labelCantStock{
-    margin: 10px;
-  }
