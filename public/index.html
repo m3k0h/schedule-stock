@@ -7,29 +7,32 @@
     <title>Schedule-Stock</title>
 </head>
 <header>
-    <h1>📦 | Deposito</h1>
+    <h1 class="logo">📦</h1>
+    <h1>Deposito</h1>
 </header>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th class="colNombre">Nombre</th>
-                <th>Stock</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody id="tbDrogas">
-            <tr data-id="${id}">
-                <td>${id}</td>
-                <td class="arrNombre">${nombre}</td>
-                <td>${stock}</td>
-                <td><button class="optButton btnModificarStock" onclick="modificarStock(2,1)">✏️</button> <button class="optButton btnEliminar">✕</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <button class="btnAgregar" onclick="agregarDroga()">Agregar</button>
 
-    
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="colNombre">Nombre</th>
+                    <th>Stock</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbDrogas">
+                <tr data-id="${id}">
+                    <td>${id}</td>
+                    <td class="arrNombre">${nombre}</td>
+                    <td>${stock}</td>
+                    <td><button class="optButton btnModificarStock" onclick="modificarStock(2,1)">✏️</button> <button class="optButton btnEliminar">✕</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <footer>
 
@@ -47,6 +50,28 @@
                 <input type="number" id="modificarStock" required>
                 <br>
                 <button type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="modalAgregar" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="closeAgregarDroga" class="close">&times;</span>
+            <h2>🌿 | Agregar nueva droga</h2>
+        </div>
+        <div class="modal-body">
+            <form id="formAgregarDroga">
+                <label for="nombreDroga" id="labelNombreDroga">Nombre</label>
+                <br>
+                <input type="text" id="nombreDroga" required>
+                <br>
+                <label for="cantStock" id="labelCantStock">Stock</label>
+                <br>
+                <input type="number" id="cantStock" required>
+                <br>
+                <button type="submit">Crear</button>
             </form>
         </div>
     </div>

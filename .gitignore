@@ -8,6 +8,7 @@ yarn-error.log*
 
 # Archivos de entorno
 .pem
+schedule-ssh.pem
 
 # Directorio de distribución (por ejemplo, si usas Vite o Webpack)
 dist/
