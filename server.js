@@ -4,7 +4,7 @@ const cors = require('cors');
 const db = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 80;
 const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -75,4 +75,4 @@ app.delete('/eliminar/:id', (req, res) => {
 });
 
 
-app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+app.listen(PORT, "0.0.0.0", () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
