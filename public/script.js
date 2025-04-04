@@ -1,3 +1,10 @@
+const socket = io('http://18.229.141.107:4000');
+
+  socket.on('tabla-actualizada', (data) => {
+    console.log("🔁 Cambio detectado:", data);
+    cargarDrogas(); // reemplazalo por tu función para refrescar la tabla
+});
+
 document.getElementById("formActualizarStock").addEventListener("submit", async function(event) {
     event.preventDefault();
 
