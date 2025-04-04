@@ -5,7 +5,7 @@ document.getElementById("formActualizarStock").addEventListener("submit", async 
     const cantidad = parseInt(document.getElementById("modificarStock").value);
 
     try {
-        const response = await fetch("http://localhost:4000/reponer", {
+        const response = await fetch("/reponer", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +39,7 @@ document.getElementById("modalAgregar").addEventListener("submit", async functio
     const stock = parseInt(document.getElementById("cantStock").value);
 
     try {
-        const response = await fetch("http://localhost:4000/crear", {
+        const response = await fetch("/crear", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -69,7 +69,7 @@ document.getElementById("modalAgregar").addEventListener("submit", async functio
 async function eliminarDroga(id){
     if(!confirm("Estas seguro wachinaso?")) return;
     try {
-        const response = await fetch(`http://localhost:4000/eliminar/${id}`, {
+        const response = await fetch(`/eliminar/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
