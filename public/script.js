@@ -1,8 +1,9 @@
 const socket = io('http://18.229.141.107:4000');
+console.log("Conectado al socket");
 
-  socket.on('tabla-actualizada', (data) => {
+  socket.on('tabla-actualizada', async (data) => {
     console.log("🔁 Cambio detectado:", data);
-    cargarDrogas(); // reemplazalo por tu función para refrescar la tabla
+    await cargarDrogas(); // reemplazalo por tu función para refrescar la tabla
 });
 
 document.getElementById("formActualizarStock").addEventListener("submit", async function(event) {
@@ -25,17 +26,14 @@ document.getElementById("formActualizarStock").addEventListener("submit", async 
             console.log("Stock actualizado:", data.stockActualizado);
             alert("Stock actualizado correctamente");
             document.getElementById("modalStock").style.display = "none";
-            await cargarDrogas();
         } else {
             console.error("Error al actualizar stock:", data.error);
             alert("Error al actualizar stock");
             document.getElementById("modalStock").style.display = "none";
-            await cargarDrogas();
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
         document.getElementById("modalStock").style.display = "none";
-        await cargarDrogas();
     }
 });
 
@@ -59,7 +57,6 @@ document.getElementById("modalAgregar").addEventListener("submit", async functio
             console.log(data.message + " | ID: " + data.id);
             alert(data.message);
             document.getElementById("modalAgregar").style.display = "none";
-            await cargarDrogas();
         } else {
             console.error("Error al crear droga:", data.error);
             alert("Error al crear droga");
@@ -87,15 +84,12 @@ async function eliminarDroga(id){
         if (response.ok) {
             console.log(data.message + " | ID: " + data.id);
             alert(data.message);
-            await cargarDrogas();
         } else {
             console.error("Error al eliminar droga:", data.error);
             alert("Error al eliminar droga");
-            await cargarDrogas();
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
-        await cargarDrogas();
     }
 }
 
