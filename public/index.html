@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Schedule-Stock</title>
+</head>
+<header>
+    <h1>📦 | Deposito</h1>
+</header>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th class="colNombre">Nombre</th>
+                <th>Stock</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody id="tbDrogas">
+            <tr data-id="${id}">
+                <td>${id}</td>
+                <td class="arrNombre">${nombre}</td>
+                <td>${stock}</td>
+                <td><button class="optButton btnModificarStock" onclick="modificarStock(2,1)">✏️</button> <button class="optButton btnEliminar">✕</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+</body>
+<footer>
+
+</footer>
+<div id="modalStock" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>📋 | Modificar stock</h2>
+        </div>
+        <div class="modal-body">
+            <form id="formActualizarStock">
+                <label for="modificarStock" id="labelModificarStock">Stock</label>
+                <br>
+                <input type="number" id="modificarStock" required>
+                <br>
+                <button type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</html>

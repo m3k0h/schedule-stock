@@ -1,0 +1,145 @@
+body{
+    background-color: #1f2124;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header{
+    text-align: center;
+}
+
+table {
+    table-layout: auto;
+    width: auto;
+    max-width: 80%;
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: #121826;
+}
+
+thead {
+    background: #1E40AF;
+    color: #F1F5F9;
+    font-weight: bold;
+}
+
+th, td {
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
+    padding: 8px 12px; /* Agrega espaciado */
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.colNombre, .arrNombre{
+    text-align: center;
+    min-width: 200px;
+}
+
+tbody tr {
+    background-color: #1C2536;
+    color: #F1F5F9;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #16202E;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+.optButton{
+    font-size:21px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+.optButton:hover{
+    transform: scale(1.2);
+}
+
+
+.btnEliminar{
+    color: white;
+    font-size: 26px;
+}
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0; /* Asegura que está pegado arriba */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center; /* Centrado horizontalmente */
+    align-items: flex-start; /* Alineado al inicio (arriba) */
+    padding-top: 20vh; /* Lo empuja un poco hacia abajo */
+}
+
+.modal-content {
+    position: relative;
+    box-shadow: #2b2b2b71 00px 0px 50px;
+    background: rgb(12, 19, 31);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 400px;
+}
+
+
+/* Botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    position: absolute;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+#modificarStock {
+    width: 100%;
+    padding: 8px;
+    border: none; /* Gris */
+    border-radius: 15px;
+    background: #334155; /* Azul oscuro */
+    color: white;
+    font-size: 16px;
+}
+
+/* Botón de actualizar */
+.modal-body button {
+    width: 100%;
+    background: #3b82f6; /* Azul */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.modal-body button:hover {
+    background: #2563eb; /* Azul más oscuro */
+}
+
+#labelModificarStock{
+    margin: 15px;
+    margin-top: 10px;
+    font-weight: 500;
+}
