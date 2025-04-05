@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menús múltiples</title>
+  <style>
+    body {
+      background-color: #111827;
+      color: white;
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      max-width: 700px;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: #1f2937;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #1f2937;
+      min-width: 120px;
+      border-radius: 5px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown a {
+      color: white;
+      padding: 10px 12px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown a:hover {
+      background-color: #374151;
+    }
+
+    .menu-container.active .dropdown {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Stock</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Paracetamol</td>
+        <td>50</td>
+        <td>
+          <div class="menu-container">
+            <button class="menu-button">⋮</button>
+            <div class="dropdown">
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Ibuprofeno</td>
+        <td>80</td>
+        <td>
+          <div class="menu-container">
+            <button class="menu-button">⋮</button>
+            <div class="dropdown">
+              <a href="#">Editar</a>
+              <a href="#">Eliminar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const botones = document.querySelectorAll(".menu-button");
+
+      botones.forEach(boton => {
+        boton.addEventListener("click", function(e) {
+          e.stopPropagation();
+          const contenedor = this.closest(".menu-container");
+
+          // Cierra todos los demás menús primero
+          document.querySelectorAll(".menu-container").forEach(mc => {
+            if (mc !== contenedor) mc.classList.remove("active");
+          });
+
+          // Toggle del actual
+          contenedor.classList.toggle("active");
+        });
+      });
+
+      // Cierra el menú si hacés clic afuera
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".menu-container").forEach(mc => {
+          mc.classList.remove("active");
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

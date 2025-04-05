@@ -14,6 +14,52 @@ socket.on('tabla-actualizada', async (data) => {
 // =========================
 
 // 📦 Actualizar Stock
+
+//Restar
+async function restarStock(id, stock){
+    cantidad = parseInt(stock)-1
+    try {
+        const response = await fetch("/reponer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, cantidad })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Stock actualizado correctamente");
+        } else {
+            console.error("Error al actualizar stock:", data.error);
+            alert("Error al actualizar stock");
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+}
+
+//Sumar
+async function sumarStock(id, stock){
+    cantidad = parseInt(stock)+1
+    try {
+        const response = await fetch("/reponer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, cantidad })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Stock actualizado correctamente");
+        } else {
+            console.error("Error al actualizar stock:", data.error);
+            alert("Error al actualizar stock");
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+}
+
+// General
 document.getElementById("formActualizarStock").addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -127,6 +173,34 @@ document.getElementById("closeAgregarDroga").addEventListener("click", function(
 });
 
 // =========================
+// ⋮ ABRIR MENU
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+    const tabla = document.getElementById("tbDrogas"); // o tbody, o el contenedor adecuado
+
+    tabla.addEventListener("click", function (e) {
+        if (e.target && e.target.classList.contains("menu-button")) {
+            const boton = e.target
+            e.stopPropagation()
+            const contenedor = boton.closest(".menu-container");
+            console.log(contenedor)
+
+            document.querySelectorAll(".menu-container").forEach(mc => {
+                if (mc !== contenedor) mc.classList.remove("active");
+            });
+
+            contenedor.classList.toggle("active");
+        }
+    });
+});
+
+    // Cierra el menú si hacés clic afuera
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".menu-container").forEach(mc => {
+        mc.classList.remove("active");
+    });
+});
+// =========================
 // 📥 CARGAR TABLA DROGAS
 // =========================
 async function cargarDrogas() {
@@ -148,8 +222,15 @@ async function cargarDrogas() {
                         <td class="arrNombre">${d.nombre}</td>
                         <td>${d.stock}</td>
                         <td>
-                            <button class="optButton btnModificarStock" onclick="modificarStock(${d.stock}, ${d.id})">✏️</button>
-                            <button class="optButton btnEliminar" onclick="eliminarDroga(${d.id})">✕</button>
+                            <button class="optButton btnModificarStock" onclick="sumarStock(${d.id}, ${d.stock})">+</button>
+                            <button class="optButton btnEliminar" onclick="restarStock(${d.id}, ${d.stock})">-</button>
+                            <div class="menu-container">
+                                <button class="menu-button">⋮</button>
+                                <div class="dropdown">
+                                <a href="#" onclick="modificarStock(${d.stock}, ${d.id})">Editar</a>
+                                <a href="#" onclick="eliminarDroga(${d.id})">Eliminar</a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 `;
