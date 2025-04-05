@@ -27,10 +27,12 @@ async function restarStock(id, stock){
 
         const data = await response.json();
         if (response.ok) {
-            alert("Stock actualizado correctamente");
+            console.log("Stock actualizado correctamente");
+            mostrarNoti("Stock actualizado -1", "info")
+
         } else {
             console.error("Error al actualizar stock:", data.error);
-            alert("Error al actualizar stock");
+            mostrarNoti("Error al actualizar stock", "error");
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
@@ -49,10 +51,11 @@ async function sumarStock(id, stock){
 
         const data = await response.json();
         if (response.ok) {
-            alert("Stock actualizado correctamente");
+            console.log("Stock actualizado correctamente");
+            mostrarNoti("Stock actualizado +1", "info")
         } else {
             console.error("Error al actualizar stock:", data.error);
-            alert("Error al actualizar stock");
+            mostrarNoti("Error al actualizar stock", "error");
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
@@ -75,15 +78,16 @@ document.getElementById("formActualizarStock").addEventListener("submit", async 
 
         const data = await response.json();
         if (response.ok) {
-            alert("Stock actualizado correctamente");
+            mostrarNoti("Stock actualizado correctamente", "info");
             document.getElementById("modalStock").style.display = "none";
         } else {
             console.error("Error al actualizar stock:", data.error);
-            alert("Error al actualizar stock");
+            mostrarNoti("Error al actualizar stock", "error");
             document.getElementById("modalStock").style.display = "none";
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
+        mostrarNoti('Error en la solicitud, contacta con el dev.', "error")
         document.getElementById("modalStock").style.display = "none";
     }
 });
@@ -104,15 +108,16 @@ document.getElementById("modalAgregar").addEventListener("submit", async functio
 
         const data = await response.json();
         if (response.ok) {
-            alert(data.message);
+            mostrarNoti(data.message, "info");
             document.getElementById("modalAgregar").style.display = "none";
         } else {
             console.error("Error al crear droga:", data.error);
-            alert("Error al crear droga");
+            mostrarNoti("Error al crear droga", "error");
             document.getElementById("modalAgregar").style.display = "none";
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
+        mostrarNoti('Error en la solicitud, contacta con el dev.', "error")
         document.getElementById("modalAgregar").style.display = "none";
     }
 
@@ -134,13 +139,14 @@ async function eliminarDroga(id) {
 
         const data = await response.json();
         if (response.ok) {
-            alert(data.message);
+            mostrarNoti(data.message, "info");
         } else {
             console.error("Error al eliminar droga:", data.error);
-            alert("Error al eliminar droga");
+            mostrarNoti("Error al eliminar droga", "error");
         }
     } catch (error) {
         console.error("Error en la solicitud:", error);
+        mostrarNoti('Error en la solicitud, contacta con el dev.', "error")
     }
 }
 
@@ -200,6 +206,31 @@ document.addEventListener("DOMContentLoaded", () => {
         mc.classList.remove("active");
     });
 });
+
+// =========================
+// 🔔 MOSTRAR NOTIFICACION
+// =========================
+function mostrarNoti(texto, tipo = 'exito') {
+    const noti = document.getElementById('notificacion');
+    noti.textContent = texto;
+  
+    if (tipo === 'error') {
+      noti.style.color = '#e74c3c';
+    } else if (tipo === 'info') {
+      noti.style.color = '#3498db';
+    } else {
+      noti.style.color = '#2ecc71'; // éxito
+    }
+  
+    noti.classList.remove('oculto');
+  
+    setTimeout(() => {
+      noti.classList.add('oculto');
+    }, 3000);
+  }
+  
+  
+
 // =========================
 // 📥 CARGAR TABLA DROGAS
 // =========================
