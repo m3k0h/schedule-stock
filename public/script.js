@@ -2,7 +2,6 @@
 // 🔌 CONEXIÓN SOCKET.IO
 // =========================
 const socket = io('http://18.229.141.107:4000');
-console.log("Conectado al socket");
 
 socket.on('tabla-actualizada', async (data) => {
     console.log("🔁 Cambio detectado:", data);
