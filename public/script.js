@@ -28,7 +28,7 @@ async function restarStock(id, stock){
         if (response.ok) {
             console.log("Stock actualizado correctamente");
             mostrarNoti("Stock actualizado -1", "info")
-
+            await cargarDrogas();
         } else {
             console.error("Error al actualizar stock:", data.error);
             mostrarNoti("Error al actualizar stock", "error");
@@ -52,6 +52,7 @@ async function sumarStock(id, stock){
         if (response.ok) {
             console.log("Stock actualizado correctamente");
             mostrarNoti("Stock actualizado +1", "info")
+            await cargarDrogas();
         } else {
             console.error("Error al actualizar stock:", data.error);
             mostrarNoti("Error al actualizar stock", "error");
@@ -78,6 +79,7 @@ document.getElementById("formActualizarStock").addEventListener("submit", async 
         const data = await response.json();
         if (response.ok) {
             mostrarNoti("Stock actualizado correctamente", "info");
+            await cargarDrogas();
             document.getElementById("modalStock").style.display = "none";
         } else {
             console.error("Error al actualizar stock:", data.error);
@@ -109,6 +111,7 @@ document.getElementById("modalAgregar").addEventListener("submit", async functio
         if (response.ok) {
             mostrarNoti(data.message, "info");
             document.getElementById("modalAgregar").style.display = "none";
+            await cargarDrogas();
         } else {
             console.error("Error al crear droga:", data.error);
             mostrarNoti("Error al crear droga", "error");
@@ -139,6 +142,7 @@ async function eliminarDroga(id) {
         const data = await response.json();
         if (response.ok) {
             mostrarNoti(data.message, "info");
+            await cargarDrogas();
         } else {
             console.error("Error al eliminar droga:", data.error);
             mostrarNoti("Error al eliminar droga", "error");
@@ -227,8 +231,15 @@ function mostrarNoti(texto, tipo = 'exito') {
       noti.classList.add('oculto');
     }, 3000);
   }
-  
-  
+
+// =========================
+// 📥 CARGAR TABLA DROGAS
+// =========================
+
+function liveUpdate(){
+
+}
+
 
 // =========================
 // 📥 CARGAR TABLA DROGAS
@@ -250,10 +261,10 @@ async function cargarDrogas() {
                     <tr data-id="${d.id}">
                         <td>${d.id}</td>
                         <td class="arrNombre">${d.nombre}</td>
-                        <td>${d.stock}</td>
+                        <td id="quantityStock" data-id:"${d.id}">${d.stock}</td>
                         <td>
-                            <button class="optButton btnModificarStock" onclick="sumarStock(${d.id}, ${d.stock})">+</button>
-                            <button class="optButton btnEliminar" onclick="restarStock(${d.id}, ${d.stock})">-</button>
+                            <button class="optButton btnSumar" onclick="sumarStock(${d.id}, ${d.stock})">▲</button>
+                            <button class="optButton btnRestar" onclick="restarStock(${d.id}, ${d.stock})">▼</button>
                             <div class="menu-container">
                                 <button class="menu-button">⋮</button>
                                 <div class="dropdown">

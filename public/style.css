@@ -96,17 +96,13 @@ td:last-child {
     border-radius: 5px;
     border: 1px solid transparent;
     background-color: transparent;
+    align-items: center;
     color: white;
-    font-size: 25px;
+    font-size: 26px;
 }
 
 .optButton:hover {
     transform: scale(1.2);
-}
-
-.btnEliminar {
-    color: white;
-    font-size: 26px;
 }
 
 .btnAgregar {
@@ -125,6 +121,13 @@ td:last-child {
     background-color: #2d6bf0;
 }
 
+.btnSumar{
+    color: #2d6bf0;
+}
+
+.btnRestar{
+    color: #9ab5ff;
+}
 /* MODALES */
 .modal {
     display: none;
