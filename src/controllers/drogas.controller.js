@@ -56,3 +56,7 @@ exports.eliminarDroga = (req, res) => {
         res.json({ message: "Droga eliminada", id });
     });
 };
+
+exports.subirArchivo = (req, res) => {
+    console.log(req.file);
+}
