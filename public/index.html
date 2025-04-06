@@ -58,7 +58,7 @@
     </div>
 
     <!-- Form: Subir archivo -->
-    <form action="http://localhost:3000/subir" method="POST" enctype="multipart/form-data">
+    <form id="formSubirArchivo">
         <input type="file" name="archivo" />
         <button type="submit">Subir archivo</button>
     </form>
@@ -89,6 +89,13 @@
     <div id="notificacion" class="noti oculto">Guardado correctamente ✅</div>
     <!-- Scripts -->
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
-    <script src="script.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/stock.js"></script>
+    <script src="/js/drogas.js"></script>
+    <script src="/js/modales.js"></script>
+    <script src="/js/tabla.js"></script>
+    <script src="/js/upload.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

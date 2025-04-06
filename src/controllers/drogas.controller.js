@@ -1,4 +1,5 @@
 const db = require('../db');
+const path = require('path');
 const { emitirActualizacionTabla } = require('../sockets/socket');
 
 exports.obtenerStock = (req, res) => {
@@ -58,5 +59,14 @@ exports.eliminarDroga = (req, res) => {
 };
 
 exports.subirArchivo = (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No se subió ningún archivo' });
+    }
     console.log(req.file);
-}
+
+    res.status(200).json({
+        mensaje: 'Archivo subido correctamente',
+        archivo: req.file.filename,
+        ruta: `/uploads/${req.file.filename}`
+    });
+};
